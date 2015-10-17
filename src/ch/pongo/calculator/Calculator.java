@@ -1,9 +1,9 @@
 package ch.pongo.calculator;
 
 import ch.pongo.calculator.calculationsource.ReadFileAsCalculationSource;
+import ch.pongo.calculator.calculation.Calculation;
+import ch.pongo.calculator.calculation.CalculationFactory;
 import ch.pongo.calculator.calculationsource.CalculationSource;
-import ch.pongo.calculator.operand.Calculation;
-import ch.pongo.calculator.operand.CalculationFactory;
 
 public class Calculator {
 

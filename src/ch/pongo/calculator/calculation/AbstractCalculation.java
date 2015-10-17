@@ -1,4 +1,4 @@
-package ch.pongo.calculator.operand;
+package ch.pongo.calculator.calculation;
 
 abstract class AbstractCalculation implements Calculation {
 
