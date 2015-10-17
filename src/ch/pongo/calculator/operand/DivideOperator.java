@@ -4,7 +4,10 @@ class DivideOperator extends AbstractCalculation {
 
 	@Override
 	public float calculate() {
-		return a / b;
+		if (b == 0) {
+			throw new IllegalArgumentException("Divisor is 0!");
+		} else {
+			return a / b;
+		}
 	}
-
 }

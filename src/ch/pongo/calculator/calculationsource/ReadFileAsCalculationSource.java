@@ -26,7 +26,6 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 	}
 	
 	private Stack<float[]> fetchCalculationsFromFile() {
-		//float[] nextCalculation = {0, 0};
 		try (BufferedReader br = new BufferedReader(new FileReader("Calculations.txt"))) {
 			String line;
 			while((line = br.readLine()) != null) {

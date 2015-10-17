@@ -7,6 +7,10 @@ public class CalculationFactory {
 			return new PlusOperator();
 		} else if (operatorSign.equals("/")) {
 			return new DivideOperator();
+		} else if (operatorSign.equals("*")) {
+			return new MultiplicationOperator();
+		} else if (operatorSign.equals("-")) {
+			return new MinusOperator();
 		} else {
 			throw new IllegalArgumentException("Invalid operator sign");
 		}				

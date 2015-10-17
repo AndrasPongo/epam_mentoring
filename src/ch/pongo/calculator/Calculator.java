@@ -13,7 +13,7 @@ public class Calculator {
 
 		float[] aAndB = null;
 		while ((aAndB = calculationSource.getNextCalculation()) != null){
-			String operatorSign = "+";
+			String operatorSign = "/";
 			CalculationFactory calculationFactory = new CalculationFactory();
 			Calculation calculation = calculationFactory.createCalculation(operatorSign);
 			calculation.setA(aAndB[0]);
