@@ -13,7 +13,7 @@ import ch.pongo.calculator.calculation.CalculationFactory;
 public class ReadFileAsCalculationSource implements CalculationSource {
 
 	private CalculationFactory calculationFactory = new CalculationFactory();
-	private List<Calculation> operandsFromFile = new LinkedList<Calculation>();
+	private List<Calculation> calculationsFromFile = new LinkedList<Calculation>();
 
 	public ReadFileAsCalculationSource() {
 		fetchCalculationsFromFile();
@@ -21,8 +21,8 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 
 	@Override
 	public Calculation getNextCalculation() {
-		if (!operandsFromFile.isEmpty()) {
-			return operandsFromFile.remove(0);
+		if (!calculationsFromFile.isEmpty()) {
+			return calculationsFromFile.remove(0);
 		}
 		return null;
 	}
@@ -33,7 +33,7 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 			while ((line = br.readLine()) != null) {
 
 				Calculation calculation = parseCalculation(line);
-				operandsFromFile.add(calculation);
+				calculationsFromFile.add(calculation);
 			}
 
 		} catch (IOException e) {
