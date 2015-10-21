@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class ReadFileAsCalculationSource implements CalculationSource {
 	private List<float[]> operandsFromFile = new LinkedList<float[]>();
@@ -26,8 +27,9 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 			String line;
 			while ((line = br.readLine()) != null) {
 				float[] nextCalculation = new float[2];
-				nextCalculation[0] = Float.parseFloat(line.substring(0, line.indexOf(",")));
-				nextCalculation[1] = Float.parseFloat(line.substring(line.indexOf(",") + 1, line.length()));
+				StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
+				nextCalculation[0] = Float.parseFloat(stringTokenizer.nextToken());
+				nextCalculation[1] = Float.parseFloat(stringTokenizer.nextToken());
 				operandsFromFile.add(nextCalculation);
 			}
 		} catch (IOException e) {
