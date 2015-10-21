@@ -1,9 +1,8 @@
 package ch.pongo.calculator;
 
-import ch.pongo.calculator.calculationsource.ReadFileAsCalculationSource;
 import ch.pongo.calculator.calculation.Calculation;
-import ch.pongo.calculator.calculation.CalculationFactory;
 import ch.pongo.calculator.calculationsource.CalculationSource;
+import ch.pongo.calculator.calculationsource.ReadFileAsCalculationSource;
 
 public class Calculator {
 
@@ -11,13 +10,8 @@ public class Calculator {
 
 		CalculationSource calculationSource = new ReadFileAsCalculationSource();
 
-		float[] aAndB = null;
-		while ((aAndB = calculationSource.getNextCalculation()) != null){
-			String operatorSign = "/";
-			CalculationFactory calculationFactory = new CalculationFactory();
-			Calculation calculation = calculationFactory.createCalculation(operatorSign);
-			calculation.setA(aAndB[0]);
-			calculation.setB(aAndB[1]);
+		Calculation calculation = null;
+		while ((calculation = calculationSource.getNextCalculation()) != null) {
 			System.out.println(calculation.calculate());
 		}
 	}

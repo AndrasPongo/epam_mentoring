@@ -1,44 +1,55 @@
 package ch.pongo.calculator.calculationsource;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringTokenizer;
 
+import ch.pongo.calculator.calculation.Calculation;
+import ch.pongo.calculator.calculation.CalculationFactory;
 
 public class ReadFileAsCalculationSource implements CalculationSource {
-	private Stack<float[]> operandsFromFile = new Stack<float[]>();
-	
+
+	private CalculationFactory calculationFactory = new CalculationFactory();
+	private List<Calculation> operandsFromFile = new LinkedList<Calculation>();
+
 	public ReadFileAsCalculationSource() {
-		this.fetchCalculationsFromFile();
+		fetchCalculationsFromFile();
 	}
-	
+
 	@Override
-	public float[] getNextCalculation() {
-		float[] x = {0, 0};
-		if (!operandsFromFile.empty()) {
-			x = (float[])operandsFromFile.pop();
-			return (x);
-		} else {
-			return null;
+	public Calculation getNextCalculation() {
+		if (!operandsFromFile.isEmpty()) {
+			return operandsFromFile.remove(0);
 		}
+		return null;
 	}
-	
-	private Stack<float[]> fetchCalculationsFromFile() {
+
+	private void fetchCalculationsFromFile() {
 		try (BufferedReader br = new BufferedReader(new FileReader("Calculations.txt"))) {
 			String line;
-			while((line = br.readLine()) != null) {
-				float[] nextCalculation = new float[2]; 
-				nextCalculation[0] = Float.parseFloat(line.substring(0, line.indexOf(",")));
-				nextCalculation[1] = Float.parseFloat(line.substring(line.indexOf(",")+1, line.length()));
-				operandsFromFile.push(nextCalculation);
+			while ((line = br.readLine()) != null) {
+
+				Calculation calculation = parseCalculation(line);
+				operandsFromFile.add(calculation);
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return operandsFromFile;
+	}
+
+	private Calculation parseCalculation(String calculationString) {
+		StringTokenizer stringTokenizer = new StringTokenizer(calculationString, "+-*/", true);
+		float a = Float.parseFloat(stringTokenizer.nextToken());
+		String operand = stringTokenizer.nextToken();
+		float b = Float.parseFloat(stringTokenizer.nextToken());
+
+		Calculation calculation = calculationFactory.createCalculation(operand);
+		calculation.setA(a);
+		calculation.setB(b);
+		return calculation;
 	}
 }

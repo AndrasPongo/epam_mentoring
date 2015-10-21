@@ -1,6 +1,8 @@
 package ch.pongo.calculator.calculationsource;
 
+import ch.pongo.calculator.calculation.Calculation;
+
 public interface CalculationSource {
 
-	public float[] getNextCalculation();
+	public Calculation getNextCalculation();
 }

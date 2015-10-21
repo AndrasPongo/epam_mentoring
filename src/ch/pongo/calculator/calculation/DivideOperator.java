@@ -6,8 +6,7 @@ class DivideOperator extends AbstractCalculation {
 	public float calculate() {
 		if (b == 0) {
 			throw new IllegalArgumentException("Divisor is 0!");
-		} else {
-			return a / b;
 		}
+		return a / b;
 	}
 }
