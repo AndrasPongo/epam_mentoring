@@ -6,32 +6,31 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Stack;
 
-
 public class ReadFileAsCalculationSource implements CalculationSource {
 	private Stack<float[]> operandsFromFile = new Stack<float[]>();
-	
+
 	public ReadFileAsCalculationSource() {
-		this.fetchCalculationsFromFile();
+		fetchCalculationsFromFile();
 	}
-	
+
 	@Override
 	public float[] getNextCalculation() {
-		float[] x = {0, 0};
+		float[] x = { 0, 0 };
 		if (!operandsFromFile.empty()) {
-			x = (float[])operandsFromFile.pop();
+			x = operandsFromFile.pop();
 			return (x);
 		} else {
 			return null;
 		}
 	}
-	
+
 	private Stack<float[]> fetchCalculationsFromFile() {
 		try (BufferedReader br = new BufferedReader(new FileReader("Calculations.txt"))) {
 			String line;
-			while((line = br.readLine()) != null) {
-				float[] nextCalculation = new float[2]; 
+			while ((line = br.readLine()) != null) {
+				float[] nextCalculation = new float[2];
 				nextCalculation[0] = Float.parseFloat(line.substring(0, line.indexOf(",")));
-				nextCalculation[1] = Float.parseFloat(line.substring(line.indexOf(",")+1, line.length()));
+				nextCalculation[1] = Float.parseFloat(line.substring(line.indexOf(",") + 1, line.length()));
 				operandsFromFile.push(nextCalculation);
 			}
 		} catch (FileNotFoundException e) {
