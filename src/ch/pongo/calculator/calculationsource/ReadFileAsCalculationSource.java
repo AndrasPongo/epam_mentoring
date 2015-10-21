@@ -4,10 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ReadFileAsCalculationSource implements CalculationSource {
-	private Stack<float[]> operandsFromFile = new Stack<float[]>();
+	private List<float[]> operandsFromFile = new LinkedList<float[]>();
 
 	public ReadFileAsCalculationSource() {
 		fetchCalculationsFromFile();
@@ -15,22 +16,20 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 
 	@Override
 	public float[] getNextCalculation() {
-		float[] x = { 0, 0 };
-		if (!operandsFromFile.empty()) {
-			x = operandsFromFile.pop();
-			return (x);
+		if (!operandsFromFile.isEmpty()) {
+			return operandsFromFile.remove(0);
 		}
 		return null;
 	}
 
-	private Stack<float[]> fetchCalculationsFromFile() {
+	private List<float[]> fetchCalculationsFromFile() {
 		try (BufferedReader br = new BufferedReader(new FileReader("Calculations.txt"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 				float[] nextCalculation = new float[2];
 				nextCalculation[0] = Float.parseFloat(line.substring(0, line.indexOf(",")));
 				nextCalculation[1] = Float.parseFloat(line.substring(line.indexOf(",") + 1, line.length()));
-				operandsFromFile.push(nextCalculation);
+				operandsFromFile.add(nextCalculation);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
