@@ -19,9 +19,8 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 		if (!operandsFromFile.empty()) {
 			x = operandsFromFile.pop();
 			return (x);
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	private Stack<float[]> fetchCalculationsFromFile() {
