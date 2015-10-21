@@ -1,7 +1,6 @@
 package ch.pongo.calculator.calculationsource;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -31,8 +30,6 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 				nextCalculation[1] = Float.parseFloat(line.substring(line.indexOf(",") + 1, line.length()));
 				operandsFromFile.add(nextCalculation);
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
