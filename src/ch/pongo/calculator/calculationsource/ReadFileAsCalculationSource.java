@@ -22,7 +22,7 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 		return null;
 	}
 
-	private List<float[]> fetchCalculationsFromFile() {
+	private void fetchCalculationsFromFile() {
 		try (BufferedReader br = new BufferedReader(new FileReader("Calculations.txt"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -36,6 +36,5 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return operandsFromFile;
 	}
 }
