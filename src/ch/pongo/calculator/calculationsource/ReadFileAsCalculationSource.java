@@ -7,15 +7,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import ch.pongo.calculator.calculation.Calculation;
+import ch.pongo.calculator.calculation.CalculationFactory;
+
 public class ReadFileAsCalculationSource implements CalculationSource {
-	private List<float[]> operandsFromFile = new LinkedList<float[]>();
+
+	private CalculationFactory calculationFactory = new CalculationFactory();
+	private List<Calculation> operandsFromFile = new LinkedList<Calculation>();
 
 	public ReadFileAsCalculationSource() {
 		fetchCalculationsFromFile();
 	}
 
 	@Override
-	public float[] getNextCalculation() {
+	public Calculation getNextCalculation() {
 		if (!operandsFromFile.isEmpty()) {
 			return operandsFromFile.remove(0);
 		}
@@ -26,14 +31,25 @@ public class ReadFileAsCalculationSource implements CalculationSource {
 		try (BufferedReader br = new BufferedReader(new FileReader("Calculations.txt"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				float[] nextCalculation = new float[2];
-				StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
-				nextCalculation[0] = Float.parseFloat(stringTokenizer.nextToken());
-				nextCalculation[1] = Float.parseFloat(stringTokenizer.nextToken());
-				operandsFromFile.add(nextCalculation);
+
+				Calculation calculation = parseCalculation(line);
+				operandsFromFile.add(calculation);
 			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private Calculation parseCalculation(String calculationString) {
+		StringTokenizer stringTokenizer = new StringTokenizer(calculationString, "+-*/", true);
+		float a = Float.parseFloat(stringTokenizer.nextToken());
+		String operand = stringTokenizer.nextToken();
+		float b = Float.parseFloat(stringTokenizer.nextToken());
+
+		Calculation calculation = calculationFactory.createCalculation(operand);
+		calculation.setA(a);
+		calculation.setB(b);
+		return calculation;
 	}
 }
