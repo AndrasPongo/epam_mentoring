@@ -14,5 +14,4 @@ abstract class AbstractCalculation implements Calculation {
 	public void setB(float b) {
 		this.b = b;
 	}
-
 }

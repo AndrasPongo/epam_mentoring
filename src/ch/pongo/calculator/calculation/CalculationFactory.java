@@ -3,6 +3,10 @@ package ch.pongo.calculator.calculation;
 public class CalculationFactory {
 
 	public Calculation createCalculation(String operatorSign){
+		if (operatorSign==null) {
+			throw new IllegalArgumentException();
+		}
+		
 		if (operatorSign.equals("+")) {
 			return new PlusOperator();
 		} else if (operatorSign.equals("/")) {
