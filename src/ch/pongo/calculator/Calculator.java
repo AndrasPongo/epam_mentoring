@@ -19,14 +19,10 @@ public class Calculator {
 
 		Calculation calculation = null;
 		while ((calculation = calculationSource.getNextCalculation()) != null) {
-<<<<<<< HEAD
-			System.out.println(calculation.calculate());
-
-=======
+//			System.out.println(calculation.calculate());
 			LOGGER.trace("Executing the next calculation {}", calculation);
 			float result = calculation.calculate();
 			LOGGER.info("The result is {}", Float.toString(result));
->>>>>>> origin/master
 		}
 
 		LOGGER.info("Stopping the Calculation application");
