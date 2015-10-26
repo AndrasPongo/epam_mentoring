@@ -8,13 +8,13 @@ public class CalculationFactory {
 		}
 		
 		if (operatorSign.equals("+")) {
-			return new PlusOperator();
+			return new AdditionCalculation();
 		} else if (operatorSign.equals("/")) {
-			return new DivideOperator();
+			return new DivisionCalculation();
 		} else if (operatorSign.equals("*")) {
-			return new MultiplicationOperator();
+			return new MultiplicationCalculation();
 		} else if (operatorSign.equals("-")) {
-			return new MinusOperator();
+			return new SubtractionCalculation();
 		} else {
 			throw new IllegalArgumentException("Invalid operator sign");
 		}				

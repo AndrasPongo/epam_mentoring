@@ -33,7 +33,7 @@ public class CalculationFactoryTests {
 		Calculation calculation = calculationFactory.createCalculation("+");
 
 		// Then
-		assertTrue(calculation instanceof PlusOperator);
+		assertTrue(calculation instanceof AdditionCalculation);
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class CalculationFactoryTests {
 		Calculation calculation = calculationFactory.createCalculation("-");
 
 		// Then
-		assertTrue(calculation instanceof MinusOperator);
+		assertTrue(calculation instanceof SubtractionCalculation);
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class CalculationFactoryTests {
 		Calculation calculation = calculationFactory.createCalculation("*");
 
 		// Then
-		assertTrue(calculation instanceof MultiplicationOperator);
+		assertTrue(calculation instanceof MultiplicationCalculation);
 	}
 
 	@Test
@@ -69,6 +69,6 @@ public class CalculationFactoryTests {
 		Calculation calculation = calculationFactory.createCalculation("/");
 
 		// Then
-		assertTrue(calculation instanceof DivideOperator);
+		assertTrue(calculation instanceof DivisionCalculation);
 	}
 }

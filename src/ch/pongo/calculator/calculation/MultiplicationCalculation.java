@@ -1,6 +1,6 @@
 package ch.pongo.calculator.calculation;
 
-class MultiplicationOperator extends AbstractCalculation {
+class MultiplicationCalculation extends AbstractCalculation {
 
 	@Override
 	public float calculate() {

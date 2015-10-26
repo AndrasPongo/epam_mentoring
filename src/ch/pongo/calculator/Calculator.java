@@ -13,6 +13,7 @@ public class Calculator {
 		Calculation calculation = null;
 		while ((calculation = calculationSource.getNextCalculation()) != null) {
 			System.out.println(calculation.calculate());
+
 		}
 	}
 }

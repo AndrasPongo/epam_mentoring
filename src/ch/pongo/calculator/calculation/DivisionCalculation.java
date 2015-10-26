@@ -1,6 +1,6 @@
 package ch.pongo.calculator.calculation;
 
-class DivideOperator extends AbstractCalculation {
+class DivisionCalculation extends AbstractCalculation {
 
 	@Override
 	public float calculate() {
