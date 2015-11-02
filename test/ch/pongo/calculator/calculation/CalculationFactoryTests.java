@@ -1,7 +1,6 @@
 package ch.pongo.calculator.calculation;
 
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 public class CalculationFactoryTests {
